@@ -33,7 +33,7 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-        
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -43,7 +43,8 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('success','Usuario criado com sucesso.');
     }
 
-    public function edit(User $user){
+    public function edit(User $user)
+    {
         return view('user.edit',compact('user'));
     }
 
@@ -54,7 +55,7 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-        
+
         $user->fill($request->post())->save();
 
         return redirect()->route('user.index')->with('success','Usuario editado com sucesso.');

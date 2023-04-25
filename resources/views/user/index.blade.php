@@ -24,7 +24,7 @@
                     <th>{{ $item->id }}</th>
                     <th>{{ $item->name }}</th>
                     <th>{{ $item->email }}</th>
-                    <th>{{ $item->created_at }}</th>
+                    <th>{{ $item->created_at->format('d/m/Y H:i:s') }}</th>
                     <th>
                         <form action="{{ route('user.destroy', $item->id) }}" method="Post">
                             @csrf

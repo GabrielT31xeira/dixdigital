@@ -38,9 +38,16 @@ Route::group(['middleware' => 'auth'], function () {
 	// User routes
 	Route::get('user', ['as' => 'user.index','App\Http\Controllers\UserController@index']);
 	Route::get('user/create', ['as' => 'user.create','App\Http\Controllers\UserController@create']);
-	Route::get('user/edit', ['as' => 'user.create','App\Http\Controllers\UserController@edit']);
+	Route::get('user/edit', ['as' => 'user.edit','App\Http\Controllers\UserController@edit']);
 	Route::post('user/store', ['as' => 'user.store','App\Http\Controllers\UserController@store']);
-	Route::delete('user/destroy', ['as' => 'user.destroy', 'App\Http\Controllers\UserController@destroy']);
+	Route::delete('user/destroy/{id}', ['as' => 'user.destroy', 'App\Http\Controllers\UserController@destroy']);
+
+    // Noticias routes
+    Route::get('noticia', [\App\Http\Controllers\NoticiasController::class, 'index'])->name('noticia.index');
+    Route::get('noticia/create', [\App\Http\Controllers\NoticiasController::class, 'create'])->name('noticia.create');
+    Route::get('noticia/{id}/edit', [\App\Http\Controllers\NoticiasController::class, 'edit'])->name('noticia.edit');
+    Route::post('noticia/store', [\App\Http\Controllers\NoticiasController::class, 'store'])->name('noticia.store');
+    Route::delete('noticia/destroy/{id}', [\App\Http\Controllers\NoticiasController::class, 'destroy'])->name('noticia.destroy');
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);

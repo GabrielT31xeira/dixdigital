@@ -14,11 +14,6 @@ services:
             MYSQL_DATABASE: dixdigital_db
             MYSQL_USER: dixdigital
             MYSQL_PASSWORD: dixdigital
-        networks:
-            - dix_net
 
 volumes:
     db_data:
-
-networks:
-    dix_net:
