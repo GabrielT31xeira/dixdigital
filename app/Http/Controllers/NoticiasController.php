@@ -41,9 +41,34 @@ class NoticiasController extends Controller
         return view('noticia.edit', compact('noticias'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
+        Noticias::whereId($id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('noticia.index')->with('success','Notícia atualizada com sucesso.');
+    }
+
     public function destroy($id)
     {
         Noticias::destroy($id);
         return redirect()->route('noticia.index')->with('success','Notícia apagada com sucesso.');
+    }
+
+    public function search(Request $request)
+    {
+        $noticiasearch = Noticias::where('title','like', "%" . $request->title ."%")->get();
+        if(count($noticiasearch) == 0){
+            return redirect()->route('noticia.index')->with('success','Nenhuma notícia encontrada.');
+        }
+        return view('noticia.search', compact('noticiasearch'));
     }
 }

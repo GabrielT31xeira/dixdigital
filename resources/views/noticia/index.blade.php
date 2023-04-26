@@ -8,12 +8,15 @@
         </div>
     @endif
     <a class="btn btn-success" href="{{ route('noticia.create') }}">Adicionar notícias</a>
-    <div class="input-group mb-3 mt-4">
-        <span class="input-group-text" id="basic-addon1">Pesquise a notícia pelo título:</span>
-        <input type="text" class="form-control" placeholder="Digite o título" name="title" aria-label="Title"
-               aria-describedby="basic-addon1">
-    </div>
-
+    <form action="{{ route('noticia.search') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="input-group mb-3 mt-4">
+            <span class="input-group-text" id="basic-addon1">Pesquise a notícia pelo título:</span>
+            <input type="text" class="form-control" placeholder="Digite o título" name="title" aria-label="Title"
+                   aria-describedby="basic-addon1">
+        </div>
+        <button class="btn btn-success" type="submit">Pesquisar</button>
+    </form>
     @if(count($noticias) == 0)
         <p>Sem notícias criadas por você</p>
     @endif

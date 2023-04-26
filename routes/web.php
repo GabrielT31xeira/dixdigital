@@ -46,8 +46,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('noticia', [\App\Http\Controllers\NoticiasController::class, 'index'])->name('noticia.index');
     Route::get('noticia/create', [\App\Http\Controllers\NoticiasController::class, 'create'])->name('noticia.create');
     Route::get('noticia/{id}/edit', [\App\Http\Controllers\NoticiasController::class, 'edit'])->name('noticia.edit');
+    Route::put('noticia/{id}/update', [\App\Http\Controllers\NoticiasController::class, 'update'])->name('noticia.update');
     Route::post('noticia/store', [\App\Http\Controllers\NoticiasController::class, 'store'])->name('noticia.store');
     Route::delete('noticia/destroy/{id}', [\App\Http\Controllers\NoticiasController::class, 'destroy'])->name('noticia.destroy');
+
+    Route::post('noticia/search', [\App\Http\Controllers\NoticiasController::class, 'search'])->name('noticia.search');
+
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
